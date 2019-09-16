@@ -109,7 +109,7 @@ BillboardVertex;
       }
    }   
 
-   glBindVertexArrayOES(0);
+//   glBindVertexArrayOES(0);
    glBindBuffer(GL_ARRAY_BUFFER, 0);
 
    glEnableVertexAttribArray(UtilityVertexAttribPosition); 

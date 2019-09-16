@@ -332,7 +332,7 @@ static GLfloat distanceSquared(
    withCamera:(UtilityCamera *)aCamera
    terrainEffect:(UtilityTerrainEffect *)aTerrainEffect;
 {  
-   glBindVertexArrayOES(0);
+//   glBindVertexArrayOES(0);
    
    // Draw the terrain for tiles that weren't culled
    aTerrainEffect.projectionMatrix = aCamera.projectionMatrix;
@@ -355,7 +355,7 @@ static GLfloat distanceSquared(
    withCamera:(UtilityCamera *)aCamera
    pickEffect:(UtilityPickTerrainEffect *)aPickEffect;
 {
-   glBindVertexArrayOES(0);
+//   glBindVertexArrayOES(0);
    
    // Draw the terrain for tiles that weren't culled
    aPickEffect.modelIndex = 0;

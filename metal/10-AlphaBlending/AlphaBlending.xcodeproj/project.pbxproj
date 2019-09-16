@@ -222,6 +222,7 @@
 				TargetAttributes = {
 					83DBFC141A3F5C0000630BA1 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 298H868S9L;
 					};
 				};
 			};
@@ -406,10 +407,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 298H868S9L;
 				INFOPLIST_FILE = AlphaBlending/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.metalbyexample.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.metalbyexample.AlphaBlending.bar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -418,10 +420,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 298H868S9L;
 				INFOPLIST_FILE = AlphaBlending/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.metalbyexample.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.metalbyexample.AlphaBlending.bar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -75,13 +75,13 @@
 //  Deallocate OpenGL resources used by receiver.
 - (void)dealloc
 {
-   glBindVertexArrayOES(0);
+//   glBindVertexArrayOES(0);
    glBindBuffer(GL_ARRAY_BUFFER, 0);
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
    
    if(0 != vertexArrayID_)
    {
-      glDeleteVertexArraysOES(1, &vertexArrayID_);
+      glDeleteBuffers(1, &vertexArrayID_);
       vertexArrayID_ = 0;
    }
    

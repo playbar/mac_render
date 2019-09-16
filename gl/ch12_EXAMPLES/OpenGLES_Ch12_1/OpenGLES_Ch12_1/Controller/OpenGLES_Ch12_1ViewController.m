@@ -757,7 +757,7 @@ OpenGLES_Ch12_1DefaultSimplifaicationDistanceInTiles = 4;
          
       [self.skyboxEffect prepareToDraw];
       [self.skyboxEffect draw];
-      glBindVertexArrayOES(0);
+//      glBindVertexArrayOES(0);
    }
    
    // Assume subsequent rendering involves translucent objects.
