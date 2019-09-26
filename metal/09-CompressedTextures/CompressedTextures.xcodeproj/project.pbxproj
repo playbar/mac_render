@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A4FFB5E233C558F0031AD11 /* etc2.ktx in Resources */ = {isa = PBXBuildFile; fileRef = 4A4FFB5D233C558F0031AD11 /* etc2.ktx */; };
 		831034C71AE8134D00E8D2F6 /* hotair.etc2.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 831034C61AE8134600E8D2F6 /* hotair.etc2.pvr */; };
 		831034CA1AE965A000E8D2F6 /* MBETextureDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 831034C91AE965A000E8D2F6 /* MBETextureDataSource.m */; };
 		83419B831AE1B77500148DCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83419B821AE1B77500148DCA /* main.m */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A4FFB5D233C558F0031AD11 /* etc2.ktx */ = {isa = PBXFileReference; lastKnownFileType = file; path = etc2.ktx; sourceTree = "<group>"; };
 		831034C61AE8134600E8D2F6 /* hotair.etc2.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = hotair.etc2.pvr; sourceTree = "<group>"; };
 		831034C81AE965A000E8D2F6 /* MBETextureDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBETextureDataSource.h; sourceTree = "<group>"; };
 		831034C91AE965A000E8D2F6 /* MBETextureDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBETextureDataSource.m; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		836731951AE5B16E004EB1C3 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				4A4FFB5D233C558F0031AD11 /* etc2.ktx */,
 				836731A71AE60F11004EB1C3 /* textures.json */,
 				836731AB1AE6F302004EB1C3 /* hotair.2bpp.pvr */,
 				836731A91AE6D087004EB1C3 /* hotair.4bpp.pvr */,
@@ -164,6 +167,7 @@
 				TargetAttributes = {
 					83419B7C1AE1B77500148DCA = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 298H868S9L;
 					};
 				};
 			};
@@ -199,6 +203,7 @@
 				83419B8C1AE1B77500148DCA /* Main.storyboard in Resources */,
 				83419B911AE1B77500148DCA /* LaunchScreen.xib in Resources */,
 				836731A11AE5B16E004EB1C3 /* hotair.png in Resources */,
+				4A4FFB5E233C558F0031AD11 /* etc2.ktx in Resources */,
 				83419B8E1AE1B77500148DCA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,10 +351,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 298H868S9L;
 				INFOPLIST_FILE = CompressedTextures/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.metalbyexample.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.play.bar.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -358,10 +364,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 298H868S9L;
 				INFOPLIST_FILE = CompressedTextures/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.metalbyexample.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.play.bar.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

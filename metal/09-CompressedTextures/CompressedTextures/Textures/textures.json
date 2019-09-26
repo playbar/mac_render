@@ -1,5 +1,9 @@
 [
     {
+        "label":"ETC2KTX",
+        "filename":"etc2.ktx",
+    },
+    {
         "label":"PNG",
         "filename":"hotair.png",
     },

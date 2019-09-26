@@ -1,1 +1,4 @@
 .DS_Store
+metal/09-CompressedTextures/.idea
+metal/10-AlphaBlending/AlphaBlending.xcodeproj/project.xcworkspace/xcshareddata
+*.xcuserstate

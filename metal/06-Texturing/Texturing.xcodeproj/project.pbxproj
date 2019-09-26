@@ -188,6 +188,7 @@
 				TargetAttributes = {
 					839E18CF1BE348B800944528 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 298H868S9L;
 					};
 				};
 			};
@@ -371,10 +372,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 298H868S9L;
 				INFOPLIST_FILE = Texturing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.metalbyexample.Texturing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.play.bar.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -383,10 +385,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 298H868S9L;
 				INFOPLIST_FILE = Texturing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.metalbyexample.Texturing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.play.bar.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

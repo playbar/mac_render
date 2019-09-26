@@ -99,6 +99,8 @@ typedef NS_ENUM(NSInteger, MBEPVRv3PixelFormat)
 
 typedef NS_ENUM(NSInteger, MBEKTXInternalFormat)
 {
+    MBEKTXInternalFormatETC2_RGB8  = 37492,
+    MBEKTXInternalFormatETC2_RGBA8 = 37496,
     MBEKTXInternalFormatASTC_4x4   = 37808,
     MBEKTXInternalFormatASTC_5x4   = 37809,
     MBEKTXInternalFormatASTC_5x5   = 37810,
@@ -272,7 +274,8 @@ typedef NS_ENUM(NSInteger, MBEKTXInternalFormat)
             [self loadASTCImageData:data];
             break;
         case MBETextureContainerFormatKTX:
-            [self loadKTXImageData:data];
+//            [self loadKTXImageData:data];
+            [self loadETC2KTXImageData:data];
             break;
         default:
             break;
@@ -816,6 +819,10 @@ typedef NS_ENUM(NSInteger, MBEKTXInternalFormat)
 - (MTLPixelFormat)pixelFormatForGLInternalFormat:(MBEKTXInternalFormat)internalFormat
 {
     switch (internalFormat) {
+        case MBEKTXInternalFormatETC2_RGB8:
+            return MTLPixelFormatETC2_RGB8;
+        case MBEKTXInternalFormatETC2_RGBA8:
+            return MTLPixelFormatEAC_RGBA8;
         case MBEKTXInternalFormatASTC_4x4:
             return MTLPixelFormatASTC_4x4_LDR;
         case MBEKTXInternalFormatASTC_5x4:
@@ -875,6 +882,63 @@ typedef NS_ENUM(NSInteger, MBEKTXInternalFormat)
         default:
             return MTLPixelFormatInvalid;
     }
+}
+
+- (BOOL)loadETC2KTXImageData:(NSData *)data;
+{
+    MBEKTXHeader *header = (MBEKTXHeader *)[data bytes];
+    
+    BOOL endianSwap = (header->endianness == 0x01020304);
+    
+    uint32_t width = endianSwap ? CFSwapInt32(header->width) : header->width;
+    uint32_t height = endianSwap ? CFSwapInt32(header->height) : header->height;
+    uint32_t internalFormat = endianSwap ? CFSwapInt32(header->glInternalFormat) : header->glInternalFormat;
+    uint32_t mipCount = endianSwap ? CFSwapInt32(header->mipmapCount) : header->mipmapCount;
+    uint32_t keyValueDataLength = endianSwap ? CFSwapInt32(header->keyValueDataLength) : header->keyValueDataLength;
+    
+    const uint8_t *bytes = [data bytes] + sizeof(MBEKTXHeader) + keyValueDataLength;
+    const size_t dataLength = [data length] - (sizeof(MBEKTXHeader) + keyValueDataLength + 4);
+    NSData *pData = [NSData dataWithBytes:bytes length: dataLength];
+    
+    NSMutableArray *levelDatas = [NSMutableArray arrayWithCapacity:MAX(mipCount, 1)];
+    [levelDatas addObject:pData];
+    
+    const uint32_t blockSize = 16;
+//    uint32_t dataOffset = 0;
+//    uint32_t levelWidth = width, levelHeight = height;
+//    while (dataOffset < dataLength)
+//    {
+//        uint32_t levelSize = *(uint32_t *)(bytes + dataOffset);
+//        dataOffset += sizeof(uint32_t);
+//
+//        NSData *mipData = [NSData dataWithBytes:bytes + dataOffset length:levelSize];
+//        [levelDatas addObject:mipData];
+//
+//        dataOffset += levelSize;
+//
+//        levelWidth = MAX(levelWidth / 2, 1);
+//        levelHeight = MAX(levelHeight / 2, 1);
+//    }
+    
+    MTLPixelFormat pixelFormat = [self pixelFormatForGLInternalFormat:internalFormat];
+    
+    if (pixelFormat == MTLPixelFormatInvalid)
+    {
+        return NO;
+    }
+    
+    uint32_t blockWidth, blockHeight;
+    [self getASTCPixelFormat:pixelFormat blockWidth:&blockWidth blockHeight:&blockHeight];
+    
+    _pixelFormat = pixelFormat;
+//    _bytesPerRow = (width / blockWidth) * blockSize;
+    _bytesPerRow = width;
+    _width = width;
+    _height = height;
+    _levels = [levelDatas copy];
+    _mipmapCount = [levelDatas count];
+    
+    return YES;
 }
 
 - (BOOL)loadKTXImageData:(NSData *)data;
@@ -967,7 +1031,8 @@ typedef NS_ENUM(NSInteger, MBEKTXInternalFormat)
         __block NSInteger levelHeight = self.height;
         __block NSInteger levelBytesPerRow = self.bytesPerRow;
 
-        [self.levels enumerateObjectsUsingBlock:^(NSData *levelData, NSUInteger level, BOOL *stop) {
+        [self.levels enumerateObjectsUsingBlock:^(NSData *levelData, NSUInteger level, BOOL *stop)
+        {
             MTLRegion region = MTLRegionMake2D(0, 0, levelWidth, levelHeight);
             [texture replaceRegion:region mipmapLevel:level withBytes:[levelData bytes] bytesPerRow:levelBytesPerRow];
 
