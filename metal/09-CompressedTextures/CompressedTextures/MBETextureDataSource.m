@@ -933,7 +933,7 @@ typedef NS_ENUM(NSInteger, MBEKTXInternalFormat)
 //    _bytesPerRow = (width / blockWidth) * blockSize;
     _bytesPerRow = width * 4;
     _width = width;
-    _height = height / 2 + 100;
+    _height = height;
     _levels = [levelDatas copy];
     _mipmapCount = [levelDatas count];
     
