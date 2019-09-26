@@ -94,7 +94,7 @@ typedef NS_ENUM(NSInteger, MBEPVRv3PixelFormat)
     MBEPVRv3PixelFormatETC2_RGBA  = 0x17,
     MBEPVRv3PixelFormatETC2_RGBA1 = 0x18,
     MBEPVRv3PixelFormatEAC_R11    = 0x19,
-    MBEPVRv3PixelFormatEAC_RG11   = 0x1A,
+    MBEPVRv3PixelFormatEAC_RG11   = 0x1A
 };
 
 typedef NS_ENUM(NSInteger, MBEKTXInternalFormat)
@@ -115,7 +115,6 @@ typedef NS_ENUM(NSInteger, MBEKTXInternalFormat)
     MBEKTXInternalFormatASTC_10x10 = 37819,
     MBEKTXInternalFormatASTC_12x10 = 37820,
     MBEKTXInternalFormatASTC_12x12 = 37821,
-
     MBEKTXInternalFormatASTC_4x4_sRGB   = 37840,
     MBEKTXInternalFormatASTC_5x4_sRGB   = 37841,
     MBEKTXInternalFormatASTC_5x5_sRGB   = 37842,
@@ -896,7 +895,7 @@ typedef NS_ENUM(NSInteger, MBEKTXInternalFormat)
     uint32_t mipCount = endianSwap ? CFSwapInt32(header->mipmapCount) : header->mipmapCount;
     uint32_t keyValueDataLength = endianSwap ? CFSwapInt32(header->keyValueDataLength) : header->keyValueDataLength;
     
-    const uint8_t *bytes = [data bytes] + sizeof(MBEKTXHeader) + keyValueDataLength;
+    const uint8_t *bytes = [data bytes] + sizeof(MBEKTXHeader) + keyValueDataLength + 4;
     const size_t dataLength = [data length] - (sizeof(MBEKTXHeader) + keyValueDataLength + 4);
     NSData *pData = [NSData dataWithBytes:bytes length: dataLength];
     
@@ -932,7 +931,7 @@ typedef NS_ENUM(NSInteger, MBEKTXInternalFormat)
     
     _pixelFormat = pixelFormat;
 //    _bytesPerRow = (width / blockWidth) * blockSize;
-    _bytesPerRow = width;
+    _bytesPerRow = width * 2;
     _width = width;
     _height = height;
     _levels = [levelDatas copy];
@@ -1034,7 +1033,10 @@ typedef NS_ENUM(NSInteger, MBEKTXInternalFormat)
         [self.levels enumerateObjectsUsingBlock:^(NSData *levelData, NSUInteger level, BOOL *stop)
         {
             MTLRegion region = MTLRegionMake2D(0, 0, levelWidth, levelHeight);
-            [texture replaceRegion:region mipmapLevel:level withBytes:[levelData bytes] bytesPerRow:levelBytesPerRow];
+            [texture replaceRegion:region
+                       mipmapLevel:level
+                         withBytes:[levelData bytes]
+                       bytesPerRow:levelBytesPerRow];
 
             levelWidth = MAX(levelWidth / 2, 1);
             levelHeight = MAX(levelHeight / 2, 1);
