@@ -162,6 +162,10 @@ GLfloat vVertices[] = {
     glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+//    glDisableVertexAttribArray(0);
+//    glBindVertexArray(0);
+//    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
     
     std::vector<std::string> faces
        {
@@ -203,21 +207,25 @@ GLfloat vVertices[] = {
     glm::mat4 model = glm::mat4(1.0f);
     glm::mat4 view = camera.GetViewMatrix();
     glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)width / (float)height, 0.1f, 100.0f);
-    
+
     glUniformMatrix4fv(glGetUniformLocation(programSkyBoxObj, "view"), 1, GL_FALSE, &view[0][0]);
     glUniformMatrix4fv(glGetUniformLocation(programSkyBoxObj, "projection"), 1, GL_FALSE, &projection[0][0]);
+    glEnableVertexAttribArray(0);
     glBindVertexArray(skyboxVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
     glDrawArrays(GL_TRIANGLES, 0, 36);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
     glDepthFunc(GL_LESS); // set depth function back to default
     
-//    glUseProgram(programObject);
-//
-//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vVertices);
-//    glEnableVertexAttribArray(0);
-//    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glUseProgram(programObject);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vVertices);
+    glEnableVertexAttribArray(0);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDisableVertexAttribArray(0);
     
     [glContext presentRenderbuffer:GL_RENDERBUFFER];
 }
