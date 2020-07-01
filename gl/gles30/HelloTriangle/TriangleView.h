@@ -10,6 +10,14 @@
 
 @interface TriangleView : DvGLESView {
     GLuint programObject;
+    GLuint programSkyBoxObj;
+    
+    GLuint skyboxVAO;
+    GLuint skyboxVBO;
+    GLuint cubemapTexture;
+    
+    GLint width;
+    GLint height;
 }
 
 @end
