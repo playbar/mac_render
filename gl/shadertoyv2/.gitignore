@@ -1,0 +1,7 @@
+
+*.lock
+
+Pods/*
+shadertoy.xcworkspace
+shadertoy.xcworkspace/*
+build/
