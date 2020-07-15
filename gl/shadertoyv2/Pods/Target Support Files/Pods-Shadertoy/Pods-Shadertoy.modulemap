@@ -1,0 +1,6 @@
+framework module Pods_Shadertoy {
+  umbrella header "Pods-Shadertoy-umbrella.h"
+
+  export *
+  module * { export * }
+}

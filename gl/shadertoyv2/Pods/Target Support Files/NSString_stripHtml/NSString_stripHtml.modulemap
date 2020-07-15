@@ -1,0 +1,6 @@
+framework module NSString_stripHtml {
+  umbrella header "NSString_stripHtml-umbrella.h"
+
+  export *
+  module * { export * }
+}
